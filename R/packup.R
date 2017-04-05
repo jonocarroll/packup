@@ -20,7 +20,7 @@ packup <- function(){
     else{
         insertion_target <- rstudioapi::document_position(0,0)
     }
-    lib_matches <- regexec(pattern = "^\\s*library\\(\"*[a-zA-Z0-9]+\\\"*)", text = doc$contents)
+    lib_matches <- regexec(pattern = "^\\s*library\\(\"*[a-zA-Z0-9]+\\\"*).*", text = doc$contents)
     line_matches <- which(unlist(lib_matches) == 1)
     line_lengths <- unlist(lapply(lib_matches[line_matches], attr, "match.length"))
     replace_location_starts <- mapply(rstudioapi::document_position, line_matches, 1, SIMPLIFY = FALSE)
